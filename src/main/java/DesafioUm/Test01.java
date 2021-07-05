@@ -11,9 +11,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Test01 {
 	
-private WebDriver driver;
-private DSL dsl;
-	
+	private WebDriver driver;
+	private DSL dsl;
+
 	@Before
 	public void inicializar() {
 		driver = new ChromeDriver();
@@ -29,38 +29,39 @@ private DSL dsl;
 
 	@Test
 	public void findDoctorAndValidateSpecAndCity() {
-		
+
 		dsl.selectElement(By.id("fragment-oimm-link"));
-		
+
 		dsl.selectElement(By.id("react-tabs-2"));
-		
+
 		dsl.setInputs("react-select-3-input", "Cirurgia Geral");
-		
+
 		dsl.setInputs("react-select-4-input", "Rio de Janeiro");
-	
+
 		dsl.setInputs("react-select-5-input", "Rio de Janeiro");
-		
+
 		dsl.selectElement(By.xpath("//*[@id=\"react-tabs-3\"]/form/div/div[6]/div[1]/button"));
 
-		dsl.MustFindElement("ProviderAddressAsGrid--address-link",  "Rio de Janeiro");
+		dsl.MustFindElement("ProviderAddressAsGrid--address-link", "Rio de Janeiro");
 		dsl.MustFindElement("ProviderSpecialties--item", "Cirurgia Geral");
 	}
 
 	@Test
 	public void findDoctorAndValidateInPagesOfCityResults() {
+
 		dsl.selectElement(By.id("fragment-oimm-link"));
-		
+
 		dsl.selectElement(By.id("react-tabs-2"));
-		
+
 		dsl.setInputs("react-select-3-input", "Cirurgia Geral");
-		
+
 		dsl.setInputs("react-select-4-input", "Rio de Janeiro");
-	
+
 		dsl.setInputs("react-select-5-input", "Rio de Janeiro");
-		
+
 		dsl.selectElement(By.xpath("//*[@id=\"react-tabs-3\"]/form/div/div[6]/div[1]/button"));
-		
+
 		dsl.nextPageResults();
-		dsl.NotMustFindElement("ProviderAddressAsGrid--address-link", "São Paulo");		
+		dsl.NotMustFindElement("ProviderAddressAsGrid--address-link", "São Paulo");
 	}
 }
